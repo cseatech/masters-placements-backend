@@ -19,6 +19,8 @@ app.get("/", (req, res) => {
 });
 app.use("/api/users", require("./routes/userRoutes.js"));
 app.use("/api/experiences", require("./routes/experienceRoutes.js"));
-app.listen(PORT, () => {
-    console.log(`Server is listening on ${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Server is listening on ${PORT}`);
+// });
+
+module.exports = app;
