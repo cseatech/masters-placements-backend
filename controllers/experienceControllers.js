@@ -52,4 +52,23 @@ const getSpecExperiences = async(req, res) => {
         success: true
     })
 }
-module.exports = {addExperiences, getCompanies, getExperiences, getSpecExperiences};
+
+const getUnverifiedFiles = async(req, res) => {
+    let experiences = await Experience.find({ verified: "false" });
+    return res.status(200).json({
+        message: experiences,
+        success: true
+    })
+}
+
+const deleteExperience = async(req, res) => {
+    await Experience.deleteOne({ _id: req.params.id });
+    return res.status(200).json({ success: true });
+}
+
+const verifyExperience = async(req, res) => {
+    await Experience.updateOne({ _id: req.params.id}, { $set: { verified: true}});
+    return res.status(200).json({ success: true });
+}
+
+module.exports = {addExperiences, getCompanies, getExperiences, getSpecExperiences, getUnverifiedFiles, deleteExperience, verifyExperience };

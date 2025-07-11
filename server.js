@@ -7,7 +7,7 @@ const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 5001;
 app.use(cors({
-    origin: "http://localhost:5173", // Your frontend origin
+    origin: ["https://masters-placements-frontend.vercel.app","https://masters-placement.cseaceg.org.in", "http://localhost:5173"], // Your frontend origin
     methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
     credentials: false
 }));
