@@ -14,7 +14,9 @@ app.use(cors({
 connectDB();
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
-
+app.get("/", (req, res) => {
+        res.json({ message: "Hi." });
+});
 app.use("/api/users", require("./routes/userRoutes.js"));
 app.use("/api/experiences", require("./routes/experienceRoutes.js"));
 app.listen(PORT, () => {
