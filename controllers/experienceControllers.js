@@ -38,6 +38,7 @@ const getCompanies = async(req, res) => {
 }
 
 const getExperiences = async(req, res) => {
+    console.log("ewjkb")
     let experiences = await Experience.find({ verified: "true" });
     return res.status(200).json({
         message: experiences,
@@ -46,6 +47,7 @@ const getExperiences = async(req, res) => {
 }
 
 const getSpecExperiences = async(req, res) => {
+    console.log("ejj")
     let experiences = await Experience.find({ verified: "true", company: req.params.company });
     return res.status(200).json({
         message: experiences,
@@ -54,6 +56,7 @@ const getSpecExperiences = async(req, res) => {
 }
 
 const getUnverifiedFiles = async(req, res) => {
+    console.log("hi")
     let experiences = await Experience.find({ verified: "false" });
     return res.status(200).json({
         message: experiences,
