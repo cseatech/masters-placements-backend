@@ -1,7 +1,7 @@
 const Experience = require("../models/experienceModel");
 
 const addExperiences = async(req, res) => {
-    const { name, email, year, company, type, linkedinurl, file, verified } = req.body;
+    const { name, email, year, company, type, linkedinurl, file } = req.body;
     const newExperience = new Experience({
         name,
         email,
@@ -10,64 +10,70 @@ const addExperiences = async(req, res) => {
         type,
         linkedinurl,
         experienceFile: file,
-        verified: false
+        verified: false,
     });
 
     await newExperience.save();
     
     return res.status(200).json({
         message: "Experience posted successfully",
-        success: true
-    })
+        success: true,
+    });
 }
 
 const getCompanies = async(req, res) => {
     try {
         let result = await Experience.distinct("company");
+        
         return res.status(200).json({
             message: result,
-            success: true
+            success: true,
         });
     } catch (err) {
         return res.status(400).json({
             message: err,
-            success: false
+            success: false,
         });
     }
 }
 
 const getExperiences = async(req, res) => {
     let experiences = await Experience.find({ verified: "true" });
+    
     return res.status(200).json({
         message: experiences,
-        success: true
-    })
+        success: true,
+    });
 }
 
 const getSpecExperiences = async(req, res) => {
     let experiences = await Experience.find({ verified: "true", company: req.params.company });
+    
     return res.status(200).json({
         message: experiences,
-        success: true
-    })
+        success: true,
+    });
 }
 
 const getUnverifiedFiles = async(req, res) => {
     let experiences = await Experience.find({ verified: "false" });
+    
     return res.status(200).json({
         message: experiences,
-        success: true
-    })
+        success: true,
+    });
 }
 
 const deleteExperience = async(req, res) => {
     await Experience.deleteOne({ _id: req.params.id });
+    
     return res.status(200).json({ success: true });
 }
 
 const verifyExperience = async(req, res) => {
     await Experience.updateOne({ _id: req.params.id}, { $set: { verified: true}});
+    
     return res.status(200).json({ success: true });
 }
 
-module.exports = {addExperiences, getCompanies, getExperiences, getSpecExperiences, getUnverifiedFiles, deleteExperience, verifyExperience };
+module.exports = { addExperiences, getCompanies, getExperiences, getSpecExperiences, getUnverifiedFiles, deleteExperience, verifyExperience };

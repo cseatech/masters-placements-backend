@@ -26,9 +26,9 @@ const experienceSchema = mongoose.Schema({
     },
     verified: {
         type: String,
-    }
+    },
 }, {
-    timestamps: true
+    timestamps: true,
 });
 
 module.exports = mongoose.model("Experience", experienceSchema);
