@@ -20,5 +20,6 @@ app.get("/", (req, res) => {
 });
 app.use("/api/users", require("./routes/userRoutes.js"));
 app.use("/api/experiences", require("./routes/experienceRoutes.js"));
+console.log("Running Node.js version:", process.version);
 
 module.exports = app;
